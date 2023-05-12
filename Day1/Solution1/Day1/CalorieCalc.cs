@@ -75,7 +75,6 @@ public class CalorieCalc
                 int calories;
                 if(int.TryParse(line, out calories))
                 {
-                    // ^1 gets the last item in the list
                     elves[currentID] += calories;
                 }
                 else
