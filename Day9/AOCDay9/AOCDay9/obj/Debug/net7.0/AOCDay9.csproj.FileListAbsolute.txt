@@ -1,0 +1,15 @@
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\bin\Debug\net7.0\AOCDay9.exe
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\bin\Debug\net7.0\AOCDay9.deps.json
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\bin\Debug\net7.0\AOCDay9.runtimeconfig.json
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\bin\Debug\net7.0\AOCDay9.dll
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\bin\Debug\net7.0\AOCDay9.pdb
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.csproj.AssemblyReference.cache
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.AssemblyInfoInputs.cache
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.AssemblyInfo.cs
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.csproj.CoreCompileInputs.cache
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.dll
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\refint\AOCDay9.dll
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.pdb
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\AOCDay9.genruntimeconfig.cache
+C:\GitCheckouts\AdventOfCode2022-Late\Day9\AOCDay9\AOCDay9\obj\Debug\net7.0\ref\AOCDay9.dll
