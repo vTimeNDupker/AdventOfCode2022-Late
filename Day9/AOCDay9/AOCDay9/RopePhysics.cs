@@ -55,34 +55,68 @@ public class RopePhysics
                     Min.Y = RopePositions[0].Y;
                 if(!headPositions.Contains(RopePositions[0]))
                     headPositions.Add(RopePositions[0]);
-                OutputMap(Min, Max, RopePositions);
+                //OutputMap(Min, Max, RopePositions);
             }
         }
 
-        //OutputMap(Min, Max, tailPositions, headPositions);
+        OutputHeadTailTotalPositions(Min, Max, tailPositions, headPositions);
         
         return tailPositions.Count;
     }
 
-    static void Move(Vector2[] RopePositions, int current)//, Vector2 previousParentPos)
+    static List<Vector2> GetPossibleMovePositions(Vector2 parentPos, Vector2 pos)
+    {
+        if ((int) pos.X == (int) parentPos.X || (int) pos.Y == (int) parentPos.Y)
+        {
+            List<Vector2> positions = new List<Vector2>();
+            positions.Add(parentPos + new Vector2(1, 0));
+            positions.Add(parentPos + new Vector2(-1, 0));
+            positions.Add(parentPos + new Vector2(0, 1));
+            positions.Add(parentPos + new Vector2(0, -1));
+            return positions;
+        }
+        else
+        {
+            List<Vector2> GoalPositions = new List<Vector2>();
+            GoalPositions.Add(parentPos + new Vector2(1, 0));
+            GoalPositions.Add(parentPos + new Vector2(-1, 0));
+            GoalPositions.Add(parentPos + new Vector2(0, 1));
+            GoalPositions.Add(parentPos + new Vector2(0, -1));
+            GoalPositions.Add(parentPos + new Vector2(1, 1));
+            GoalPositions.Add(parentPos + new Vector2(-1, -1));
+            GoalPositions.Add(parentPos + new Vector2(1, -1));
+            GoalPositions.Add(parentPos + new Vector2(-1, 1));
+            
+            
+            List<Vector2> DiagonalMoves = new List<Vector2>();
+            DiagonalMoves.Add(pos + new Vector2(1, 1));
+            DiagonalMoves.Add(pos + new Vector2(-1, -1));
+            DiagonalMoves.Add(pos + new Vector2(1, -1));
+            DiagonalMoves.Add(pos + new Vector2(-1, 1));
+
+            
+            List<Vector2> positions = new List<Vector2>();
+            for (int i = 0; i < GoalPositions.Count; i++)
+            {
+                if(DiagonalMoves.Contains(GoalPositions[i]))
+                    positions.Add(GoalPositions[i]);
+            }
+            return positions;
+        }
+    }
+
+    static void Move(Vector2[] RopePositions, int current)
     {
         Vector2 parentPos = RopePositions[current-1];
         Vector2 pos = RopePositions[current];
         
         if (Vector2.Distance(parentPos, pos) >= 2f)
         {
-            Vector2[] positions = new Vector2[8];
-            positions[0] = parentPos + new Vector2(1, 0);
-            positions[1] = parentPos + new Vector2(-1, 0);
-            positions[2] = parentPos + new Vector2(0, 1);
-            positions[3] = parentPos + new Vector2(0, -1);
-            positions[5] = parentPos + new Vector2(1, 1);
-            positions[6] = parentPos + new Vector2(-1, -1);
-            positions[7] = parentPos + new Vector2(1, -1);
-            positions[8] = parentPos + new Vector2(-1, 1);
+            List<Vector2> positions = GetPossibleMovePositions(parentPos, pos);
+
             Vector2 closest = Vector2.Zero;
             float lowestDistance = int.MaxValue;
-            for (int i = 0; i < positions.Length; i++)
+            for (int i = 0; i < positions.Count; i++)
             {
                 if (Vector2.Distance(pos, positions[i]) < lowestDistance)
                 {
@@ -164,8 +198,8 @@ public class RopePhysics
                 
                 if (tailPositions.Contains(new Vector2(adjustedX, adjustedY)))
                     outline += "T";
-                else if (headPositions.Contains(new Vector2(adjustedX, adjustedY)))
-                    outline += "H";
+                //else if (headPositions.Contains(new Vector2(adjustedX, adjustedY)))
+                //    outline += "H";
                 else
                     outline += ".";
             }
