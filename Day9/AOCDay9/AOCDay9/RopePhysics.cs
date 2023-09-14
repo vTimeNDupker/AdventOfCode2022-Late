@@ -4,7 +4,7 @@ namespace AOCDay9;
 
 public class RopePhysics
 {
-    public static int AnimateRope(string fileName, int length)
+    public static int AnimateRope(string fileName, int length, bool visualiseEveryFrame = false)
     {
         Vector2 Max = Vector2.Zero;
         Vector2 Min = Vector2.Zero;
@@ -55,11 +55,16 @@ public class RopePhysics
                     Min.Y = RopePositions[0].Y;
                 if(!headPositions.Contains(RopePositions[0]))
                     headPositions.Add(RopePositions[0]);
-                //OutputMap(Min, Max, RopePositions);
+                if (visualiseEveryFrame)
+                {
+                    OutputCurrentTail(RopePositions, tailPositions);
+                    Thread.Sleep(100);
+                    //OutputMap(Min, Max, RopePositions);
+                }
             }
         }
 
-        OutputHeadTailTotalPositions(Min, Max, tailPositions, headPositions);
+        //OutputHeadTailTotalPositions(Min, Max, tailPositions, headPositions);
         
         return tailPositions.Count;
     }
@@ -208,6 +213,78 @@ public class RopePhysics
         Console.WriteLine("");
         Console.WriteLine("-------------");
         Console.WriteLine("");
+
+    }
+    
+    static void OutputCurrentTail(Vector2[] RopePositions, List<Vector2> TailPositions)
+    {
+        Vector2 Max = Vector2.Zero;
+        Vector2 Min = Vector2.Zero;
+        
+        Min.X = int.MaxValue;
+        Min.Y = int.MaxValue;
+        Max.X = int.MinValue;
+        Max.Y = int.MinValue;
+        for (int i = 0; i < RopePositions.Length; i++)
+        {
+            if (RopePositions[i].X > Max.X)
+                Max.X = RopePositions[i].X;
+            if (RopePositions[i].Y > Max.Y)
+                Max.Y = RopePositions[i].Y;
+            if (RopePositions[i].X < Min.X)
+                Min.X = RopePositions[i].X;
+            if (RopePositions[i].Y < Min.Y)
+                Min.Y = RopePositions[i].Y;
+        }
+
+        Min.X -= 3;
+        Min.Y -= 3;
+        Max.X = Min.X + 40;
+        Max.Y = Min.Y + 40;
+        
+        int width = (int)MathF.Abs(Max.X - Min.X);
+        int height = (int)MathF.Abs(Max.Y - Min.Y);
+        string log = "";
+        for (int y = height-1; y >= 0; y--)
+        {
+            string outline = "";
+            for (int x = 0; x < width; x++)
+            {
+                int adjustedX = (int)(Min.X + x);
+                int adjustedY = (int)(Min.Y + y);
+                var adjustedVec = new Vector2(adjustedX, adjustedY);
+                if (RopePositions[0] == adjustedVec)
+                    outline += "H";
+                else if (RopePositions[^1] == adjustedVec)
+                    outline += "T";
+                else
+                {
+                    bool found = false;
+                    for (int i = 1; i < RopePositions.Length - 1; i++)
+                    {
+                        if (RopePositions[i] == adjustedVec)
+                        {
+                            outline += i;
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        if(TailPositions.Contains(adjustedVec))
+                        {
+                            outline += "#";
+                        }
+                        else
+                            outline += ".";
+                    }
+                }
+            }
+            log += outline + Environment.NewLine;
+        }
+        Console.Clear();
+        Console.Write(log + Environment.NewLine);
 
     }
 }
